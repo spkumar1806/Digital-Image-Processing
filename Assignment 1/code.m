@@ -16,9 +16,9 @@ Img3(:,:,1)=0;
 Img3(:,:,2)=0;
 blue = Img3;
 
-b = Image(:,:,1);
+r = Image(:,:,1);
 g = Image(:,:,2);
-r = Image(:,:,3);
+b = Image(:,:,3);
 gray = uint8(double(r/3)+double(g/3)+double(b/3));
 
 for i = 1:s(1)
