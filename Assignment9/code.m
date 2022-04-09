@@ -7,29 +7,6 @@ function [code,compression]=huffman(p)
 % CODE gives the huffman code in a string format of ones and zeros
 % COMPRESSION gives the compression rate
 %
-% Huffman works by first building up a binary tree (eg p =[ .5 .2 .15 .15])
-%
-%      a_1     a_4
-%    1/      1/
-%    /       /
-%  b3      b1
-%    \    /  \
-%    0\ 1/   0\
-%      b2      a_3
-%        \
-%        0\
-%          a_2
-%
-% Such that the tree always terminates at an alphabet symbol and the
-% symbols furthest away from the root have the lowest probability.
-% The branches at each level are  labeled 0 and 1.
-% For this example CODE would be 
-%     1    
-%     00
-%     010
-%     011
-% and the compression rate 1.1111   
-% Sean Danaher University of Northumbria at Newcastle UK 98/6/4
 p=p(:)/sum(p);    %normalises probabilities
 c=huff5(p);       
 code=char(getcodes(c,length(p)));
@@ -40,8 +17,7 @@ function c=huff5(p);
 % Simulates a tree structure using a nested cell structure 
 % P is a vector with the probability (number of occurences)
 %   of each alphabet symbol
-% C is the Huffman tree. Note Matlab 5 version
-% Sean Danaher 98/6/4        University of Northumbria, Newcastle UK
+% C is the Huffman tree.
 c=cell(length(p),1);			% Generate cell structure 
 for i=1:length(p)				% fill cell structure with 1,2,3...n 
    c{i}=i;						%	(n=number of symbols in alphabet)
@@ -58,7 +34,6 @@ function y= getcodes(a,n)
 % Pulls out Huffman Codes for V5
 % a is the nested cell structure created by huffcode5
 % n is the number of symbols
-% Sean Danaher 98/6/4   University of Northumbria, Newcastle UK
 global y
 y=cell(n,1);
 getcodes2(a,[])
@@ -68,7 +43,6 @@ function getcodes2(a,dum)
 %getcodes2
 % called by getcodes
 % uses Recursion to pull out codes
-% Sean Danaher 98/6/4   University of Northumbria, Newcastle UK
 global y
 if isa(a,'cell')
          getcodes2(a{1},[dum 0]);
